@@ -1,0 +1,4 @@
+@solady/=lib/solady/
+@forge/=lib/forge-std/src/
+forge-std/=lib/forge-std/src/
+solady/=lib/solady/src/
