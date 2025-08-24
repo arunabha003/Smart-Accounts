@@ -60,12 +60,13 @@ contract Account is ERC4337 {
         (uint48 validUntil, uint48 validAfter) =
             (uint48(bytes6(userOp.signature[:6])), uint48(bytes6(userOp.signature[6:12])));
         bool valid = SignatureCheckerLib.isValidSignatureNowCalldata(
-            owner(), __hashTypedData(userOp, validUntil, validAfter), userOp.signature[12:]
+            owner(), __hashTypedData(userOp, validUntil, validAfter), userOp.signature[12:] 
         );
         return (valid ? 0 : 1) | (uint256(validUntil) << 160) | (uint256(validAfter) << 208);
     }
 
-    /// @dev Encodes `userOp` and extracted time window within EIP712 syntax.
+    /// @dev Encodes `userOp` and extracted time window within EIP712 syntax. 
+    // Create EIP-712 hash of the userOp
     function __hashTypedData(
         PackedUserOperation calldata userOp,
         uint48 validUntil,
