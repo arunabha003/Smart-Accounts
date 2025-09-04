@@ -1,66 +1,104 @@
-## Foundry
+# Smart Accounts
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+A modular and extensible ERC-4337 smart account implementation built with Foundry and Solady. This project provides a comprehensive smart account solution with support for Account Abstraction, paymasters, and validator plugins.
 
-Foundry consists of:
+All Accounts support the following standards: ERC173, EIP712, ERC1271, ERC1822, ERC1967, ERC2098, ERC4337, ERC5267, ERC6492, ERC7582
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+## 🏗️ Architecture
 
-## Documentation
+### Core Components
 
+- **Account.sol**: Main smart account implementation based on Solady's ERC4337 framework
+- **Paymaster.sol**: ERC-4337 paymaster for sponsoring user operations
+- **Validator Contracts** *(Coming Soon)*: Modular validation plugins for enhanced security
+
+
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Foundry installed ([Installation Guide](https://book.getfoundry.sh/getting-started/installation))
+- Git
+
+### Installation
+
+```bash
+git clone https://github.com/arunabha003/Smart-Accounts.git
+cd Smart-Accounts
+forge install
+```
+
+## 📚 Documentation
+
+For detailed documentation on Foundry:
 https://book.getfoundry.sh/
 
-## Usage
+## 🛠️ Development
 
 ### Build
 
-```shell
-$ forge build
+```bash
+forge build
 ```
 
 ### Test
 
-```shell
-$ forge test
+```bash
+forge test
 ```
 
-### Format
+### Format Code
 
-```shell
-$ forge fmt
+```bash
+forge fmt
 ```
 
 ### Gas Snapshots
 
-```shell
-$ forge snapshot
+```bash
+forge snapshot
 ```
 
-### Anvil
+### Local Development
 
-```shell
-$ anvil
+```bash
+# Start local node
+anvil
+
+# Deploy contracts (example)
+forge script script/Deploy.s.sol:DeployScript --rpc-url http://localhost:8545 --private-key <your_private_key>
 ```
 
-### Deploy
+### Deploy to Network
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+```bash
+forge script script/Deploy.s.sol:DeployScript --rpc-url <network_rpc> --private-key <your_private_key> --broadcast --verify
 ```
 
-### Cast
+## 🔧 Contract Addresses
 
-```shell
-$ cast <subcommand>
+*Deployment addresses will be updated once contracts are deployed to networks*
+
+## 🧪 Testing
+
+The project includes comprehensive tests covering:
+- User operation validation
+- EIP-712 signature verification
+- Paymaster functionality
+- Edge cases and security scenarios
+
+```bash
+# Run all tests
+forge test
+
+# Run tests with gas reporting
+forge test --gas-report
+
+# Run specific test file
+forge test --match-contract AccountTest
 ```
 
-### Help
 
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+## ⚠️ Security Notice
+
+This code is currently under development and has not been audited. Use at your own risk in production environments.
